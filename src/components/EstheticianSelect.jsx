@@ -20,7 +20,7 @@ const EstheticianSelect = ({ selected, onChange, disabledList = [], disabled = f
             value={isOccupied ? "" : name}
             disabled={isOccupied}
           >
-            {isOccupied ? `${name} (occupée)` : name}
+            {name} {isOccupied ? "(occupée)" : ""}
           </option>
         );
       })}
