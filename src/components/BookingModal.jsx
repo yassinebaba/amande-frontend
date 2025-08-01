@@ -63,7 +63,8 @@ const BookingModal = ({ isOpen, onClose, initialService = "" }) => {
     if (formData.date && formData.heure) {
       const formattedDate = dayjs(formData.date).format("YYYY-MM-DD");
       axios
-        .get(`http://localhost:5000/api/bookings?date=${formattedDate}&time=${formData.heure}`)
+       .get(`${API_BASE_URL}/api/bookings?date=${formattedDate}&time=${formData.heure}`)
+
         .then((res) => setOccupiedSlots(res.data || []))
         .catch(() => setOccupiedSlots([]));
     }
@@ -74,7 +75,8 @@ const BookingModal = ({ isOpen, onClose, initialService = "" }) => {
       if (formData.date && formData.heure) {
         const formattedDate = dayjs(formData.date).format("YYYY-MM-DD");
         axios
-          .get(`http://localhost:5000/api/bookings?date=${formattedDate}&time=${formData.heure}`)
+      .get(`${API_BASE_URL}/api/bookings?date=${formattedDate}&time=${formData.heure}`)
+
           .then((res) => setOccupiedSlots(res.data || []))
           .catch(() => setOccupiedSlots([]));
       }
@@ -121,7 +123,7 @@ const BookingModal = ({ isOpen, onClose, initialService = "" }) => {
         telephone: `${formData.indicatif}${formData.telephone}`,
         date: dayjs(formData.date).format("YYYY-MM-DD"),
       };
-      const res = await axios.post("http://localhost:5000/api/book", payload);
+      const res = await axios.post(`${API_BASE_URL}/api/book`, payload);
       if (res.status === 200) {
         setConfirmed(true);
         setFormData({

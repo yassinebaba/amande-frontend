@@ -5,6 +5,7 @@ import CountrySelect from "./CountrySelect";
 import EstheticianSelect from "./EstheticianSelect";
 import TimeSlotPicker from "./TimeSlotPicker";
 import BookingSuccess from "./BookingSuccess";
+import { API_BASE_URL } from "../utils/api";
 
 const BookingForm = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +38,7 @@ const BookingForm = () => {
         phone: `${formData.countryCode}${formData.phone}`
       };
 
-      const res = await axios.post("http://localhost:5000/reservations", payload);
+      const res = await axios.post(`${API_BASE_URL}/api/book`, payload);
       if (res.status === 201) {
         setSuccess(true);
       }

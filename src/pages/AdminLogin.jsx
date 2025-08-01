@@ -1,12 +1,8 @@
 // src/pages/AdminLogin.jsx
 
-import React from "react";
-import { useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// (reste du code ici)
-
+import { API_BASE_URL } from "../utils/api"; // ✅ Import de l'URL backend
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -17,7 +13,7 @@ export default function AdminLogin() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/api/admin/login", {
+      const res = await fetch(`${API_BASE_URL}/api/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

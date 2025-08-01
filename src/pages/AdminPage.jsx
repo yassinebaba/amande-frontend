@@ -34,7 +34,7 @@ export default function AdminPage() {
   const fetchReservations = async () => {
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch("http://localhost:5000/api/admin/reservations", {
+     const res = await fetch(`${API_BASE_URL}/api/admin/reservations`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -50,7 +50,7 @@ export default function AdminPage() {
     const idReservation = reservations[index].idReservation;
     const token = localStorage.getItem("adminToken");
     try {
-      const res = await fetch(`http://localhost:5000/api/book/${idReservation}`, {
+    const res = await fetch(`${API_BASE_URL}/api/book/${idReservation}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
