@@ -38,7 +38,7 @@ const BookingForm = () => {
         phone: `${formData.countryCode}${formData.phone}`
       };
 
-      const res = await axios.post(`${API_BASE_URL}/api/book`, payload);
+      const res = await axios.post("http://localhost:5000/reservations", payload);
       if (res.status === 201) {
         setSuccess(true);
       }

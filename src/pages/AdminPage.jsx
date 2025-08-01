@@ -18,6 +18,8 @@ import {
   Legend,
 } from "recharts";
 import "../styles/admin.css";
+import { API_BASE_URL } from "../utils/api";
+
 
 export default function AdminPage() {
   const [reservations, setReservations] = useState([]);
