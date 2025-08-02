@@ -65,7 +65,12 @@ const BookingModal = ({ isOpen, onClose, initialService = "" }) => {
       const formattedDate = dayjs(formData.date).format("YYYY-MM-DD");
       axios
         .get(`${API_BASE_URL}/api/bookings?date=${formattedDate}&time=${formData.heure}`) // ✅ modifié
-        .then((res) => setOccupiedSlots(res.data || []))
+        .then((res) => {
+          const filtered = Array.isArray(res.data)
+            ? res.data.filter((r) => r.statut !== "Annulé")
+            : [];
+          setOccupiedSlots(filtered);
+        })
         .catch(() => setOccupiedSlots([]));
     }
   }, [formData.date, formData.heure]);
@@ -76,7 +81,12 @@ const BookingModal = ({ isOpen, onClose, initialService = "" }) => {
         const formattedDate = dayjs(formData.date).format("YYYY-MM-DD");
         axios
           .get(`${API_BASE_URL}/api/bookings?date=${formattedDate}&time=${formData.heure}`) // ✅ modifié
-          .then((res) => setOccupiedSlots(res.data || []))
+          .then((res) => {
+            const filtered = Array.isArray(res.data)
+              ? res.data.filter((r) => r.statut !== "Annulé")
+              : [];
+            setOccupiedSlots(filtered);
+          })
           .catch(() => setOccupiedSlots([]));
       }
     }, 10000);
